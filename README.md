@@ -1,3 +1,8 @@
+## install 
+```
+yarn install
+```
+
 ## set up database
 
 At monorepo root, create `.env` and add:
