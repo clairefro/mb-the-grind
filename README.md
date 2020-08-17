@@ -27,7 +27,7 @@ postgres=# CREATE DATABASE thegrind_dev;
 Connect to db
 
 ```
-PASSWORD=password psql -U postgres -d my_database_dev -h 0.0.0.0 -p 5433
+PASSWORD=password psql -U postgres -d thegrind_dev -h 0.0.0.0 -p 5433
 ```
 
 Finally migrate and serve
