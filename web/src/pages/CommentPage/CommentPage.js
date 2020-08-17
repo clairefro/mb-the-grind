@@ -1,5 +1,5 @@
 import CommentsLayout from 'src/layouts/CommentsLayout'
-import CommentCell from 'src/components/CommentCell'
+import CommentCell from 'src/components/COMMENT/CommentCell'
 
 const CommentPage = ({ id }) => {
   return (

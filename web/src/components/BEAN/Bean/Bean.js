@@ -1,7 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { Link, routes, navigate } from '@redwoodjs/router'
 
-import { prettyTime } from '../../utils/date'
+import { prettyTime } from '../../../utils/date.js'
 
 const DELETE_BEAN_MUTATION = gql`
   mutation DeleteBeanMutation($id: Int!) {
@@ -47,7 +47,7 @@ const Bean = ({ bean }) => {
   }
 
   return (
-    <div className="rounded shadow">
+    <div className="rounded shadow mb-6">
       <div className="p-4">
         <div>{bean.body}</div>
         <header className="flex justify-between mt-2">
@@ -55,20 +55,18 @@ const Bean = ({ bean }) => {
           {timeTag(bean.createdAt)}
         </header>
 
-        <nav className="rw-button-group">
-          <Link
-            to={routes.editBean({ id: bean.id })}
-            className="rw-button rw-button-blue"
-          >
+        <nav className="flex justify-end">
+          <Link to={routes.editBean({ id: bean.id })} className="text-gray-500">
             Edit
           </Link>
           <a
             href="#"
-            className="rw-button rw-button-red"
+            className="text-red-500 ml-2"
             onClick={() => onDeleteClick(bean.id)}
           >
             Delete
           </a>
+          <p className="ml-2">Comments ({bean.comments.length})</p>
         </nav>
       </div>
     </div>

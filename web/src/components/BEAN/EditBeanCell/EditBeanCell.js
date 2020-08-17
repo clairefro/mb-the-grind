@@ -1,6 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import BeanForm from 'src/components/BeanForm'
+
+import BeanForm from '../BeanForm/BeanForm'
 
 export const QUERY = gql`
   query FIND_BEAN_BY_ID($id: Int!) {

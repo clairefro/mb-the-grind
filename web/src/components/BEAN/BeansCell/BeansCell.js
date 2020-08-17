@@ -1,15 +1,17 @@
 import { Link, routes } from '@redwoodjs/router'
 
-import Comments from 'src/components/Comments'
+import Beans from '../Beans/Beans'
 
 export const QUERY = gql`
-  query COMMENTS {
-    comments {
+  query BEANS {
+    beans {
       id
       body
-      beanId
       username
       createdAt
+      comments {
+        id
+      }
     }
   }
 `
@@ -19,14 +21,14 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No comments yet. '}
-      <Link to={routes.newComment()} className="rw-link">
+      {'No beans yet. '}
+      <Link to={routes.newBean()} className="rw-link bg-mint">
         {'Create one?'}
       </Link>
     </div>
   )
 }
 
-export const Success = ({ comments }) => {
-  return <Comments comments={comments} />
+export const Success = ({ beans }) => {
+  return <Beans beans={beans} />
 }

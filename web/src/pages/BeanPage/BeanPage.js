@@ -1,5 +1,5 @@
 import BeansLayout from 'src/layouts/BeansLayout'
-import BeanCell from 'src/components/BeanCell'
+import BeanCell from 'src/components/BEAN/BeanCell'
 
 const BeanPage = ({ id }) => {
   return (

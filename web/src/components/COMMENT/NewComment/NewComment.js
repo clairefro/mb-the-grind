@@ -1,6 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import CommentForm from 'src/components/CommentForm'
+
+import CommentForm from '../CommentForm/CommentForm'
 
 const CREATE_COMMENT_MUTATION = gql`
   mutation CreateCommentMutation($input: CreateCommentInput!) {

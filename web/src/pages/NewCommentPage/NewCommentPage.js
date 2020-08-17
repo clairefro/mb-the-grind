@@ -1,5 +1,6 @@
 import CommentsLayout from 'src/layouts/CommentsLayout'
-import NewComment from 'src/components/NewComment'
+
+import NewComment from '../../components/COMMENT/NewComment/NewComment'
 
 const NewCommentPage = () => {
   return (

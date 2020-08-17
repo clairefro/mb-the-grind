@@ -1,7 +1,7 @@
 // import { useMutation, useFlash } from '@redwoodjs/web'
 
 // import { Link, routes } from '@redwoodjs/router'
-import Bean from 'src/components/Bean/Bean'
+import Bean from 'src/components/BEAN/Bean/Bean'
 
 // const DELETE_BEAN_MUTATION = gql`
 //   mutation DeleteBeanMutation($id: Int!) {

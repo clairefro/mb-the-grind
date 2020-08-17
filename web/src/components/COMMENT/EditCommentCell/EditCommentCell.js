@@ -1,6 +1,7 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import CommentForm from 'src/components/CommentForm'
+
+import CommentForm from '../CommentForm/CommentForm'
 
 export const QUERY = gql`
   query FIND_COMMENT_BY_ID($id: Int!) {

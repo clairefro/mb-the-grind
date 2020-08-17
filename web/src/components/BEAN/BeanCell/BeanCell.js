@@ -1,4 +1,4 @@
-import Bean from 'src/components/Bean'
+import Bean from 'src/components/BEAN/Bean'
 
 export const QUERY = gql`
   query FIND_BEAN_BY_ID($id: Int!) {

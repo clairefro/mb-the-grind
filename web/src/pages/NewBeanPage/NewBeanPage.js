@@ -1,5 +1,5 @@
 import BeansLayout from 'src/layouts/BeansLayout'
-import NewBean from 'src/components/NewBean'
+import NewBean from 'src/components/BEAN/NewBean'
 
 const NewBeanPage = () => {
   return (

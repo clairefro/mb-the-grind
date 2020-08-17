@@ -1,8 +1,8 @@
 // import { Link } from '@redwoodjs/router'
 
+import NewBean from 'src/components/BEAN/NewBean/NewBean'
 import GlobalLayout from 'src/layouts/GlobalLayout/GlobalLayout'
-import NewBean from 'src/components/NewBean/NewBean'
-import BeansCell from 'src/components/BeansCell/BeansCell'
+import BeansCell from 'src/components/BEAN/BeansCell/BeansCell'
 const HomePage = () => {
   return (
     <GlobalLayout>

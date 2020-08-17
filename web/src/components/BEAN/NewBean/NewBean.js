@@ -1,6 +1,6 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { navigate, routes } from '@redwoodjs/router'
-import BeanForm from 'src/components/BeanForm'
+import BeanForm from 'src/components/BEAN/BeanForm'
 
 const CREATE_BEAN_MUTATION = gql`
   mutation CreateBeanMutation($input: CreateBeanInput!) {

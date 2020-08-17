@@ -1,4 +1,4 @@
-import Comment from 'src/components/Comment'
+import Comment from '../Comment/Comment'
 
 export const QUERY = gql`
   query FIND_COMMENT_BY_ID($id: Int!) {

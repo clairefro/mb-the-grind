@@ -1,5 +1,6 @@
 import BeansLayout from 'src/layouts/BeansLayout'
-import EditBeanCell from 'src/components/EditBeanCell'
+
+import EditBeanCell from '../../components/BEAN/EditBeanCell/EditBeanCell'
 
 const EditBeanPage = ({ id }) => {
   return (
