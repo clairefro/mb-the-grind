@@ -11,6 +11,9 @@ export const QUERY = gql`
       createdAt
       comments {
         id
+        body
+        createdAt
+        username
       }
     }
   }

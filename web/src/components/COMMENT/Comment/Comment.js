@@ -1,50 +1,40 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { routes, navigate } from '@redwoodjs/router'
 
-const DELETE_COMMENT_MUTATION = gql`
-  mutation DeleteCommentMutation($id: Int!) {
-    deleteComment(id: $id) {
-      id
-    }
-  }
-`
-
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
-
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {new Date(datetime).toUTCString()}
-    </time>
-  )
-}
-
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+import Message from '../../common/message.js'
+//
+// const DELETE_COMMENT_MUTATION = gql`
+//   mutation DeleteCommentMutation($id: Int!) {
+//     deleteComment(id: $id) {
+//       id
+//     }
+//   }
+// `
 
 const Comment = ({ comment }) => {
-  const { addMessage } = useFlash()
-  const [deleteComment] = useMutation(DELETE_COMMENT_MUTATION, {
-    onCompleted: () => {
-      navigate(routes.comments())
-      addMessage('Comment deleted.', { classes: 'rw-flash-success' })
-    },
-  })
+  // const { addMessage } = useFlash()
+  // const [deleteComment] = useMutation(DELETE_COMMENT_MUTATION, {
+  //   onCompleted: () => {
+  //     navigate(routes.comments())
+  //     addMessage('Comment deleted.', { classes: 'rw-flash-success' })
+  //   },
+  // })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete comment ' + id + '?')) {
-      deleteComment({ variables: { id } })
-    }
-  }
+  // const onDeleteClick = (id) => {
+  //   if (confirm('Are you sure you want to delete comment ' + id + '?')) {
+  //     deleteComment({ variables: { id } })
+  //   }
+  // }
 
-  return <div className="">{comment.body}</div>
+  return (
+    <div className="p-4 my-2 shadow  bg-white">
+      <Message
+        body={comment.body}
+        username={comment.username}
+        createdAt={comment.createdAt}
+      />
+    </div>
+  )
 }
 
 // <span>{timeTag(comment.createdAt)}</span>

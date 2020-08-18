@@ -1,5 +1,5 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
-import { navigate, routes } from '@redwoodjs/router'
+import { useLocation, navigate /*, routes */ } from '@redwoodjs/router'
 
 import CommentForm from '../CommentForm/CommentForm'
 
@@ -13,33 +13,21 @@ const CREATE_COMMENT_MUTATION = gql`
 
 const NewComment = ({ bean }) => {
   const { addMessage } = useFlash()
+  const { pathname: currPath } = useLocation()
   const [createComment, { loading, error }] = useMutation(
     CREATE_COMMENT_MUTATION,
     {
       onCompleted: () => {
-        navigate(routes.comments())
+        navigate(currPath)
         addMessage('Comment created.', { classes: 'rw-flash-success' })
       },
     }
   )
 
-  // const onSave = (input) => {
-  //   const castInput = Object.assign(input, {
-  //     bean: { connect: { id: bean.id } },
-  //   })
-  //   createComment({ variables: { input: castInput } })
-  // }
-
-  // const relateModelToInput = (input, {model}) => {
-  //   return Object.assign(input, { bean: { connect: { id: model.id } } })
-  // }
-
   const onSave = (input) => {
     const castInput = Object.assign(input, {
-      // bean: { connect: { id: bean.id } },
       beanId: bean.id,
     })
-    // const castInput = relateModelToInput(input, bean)
     createComment({ variables: { input: castInput } })
   }
 

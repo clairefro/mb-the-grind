@@ -42,7 +42,7 @@ const CommentForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Body
+          Message
         </Label>
         <TextAreaField
           name="body"

@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       colors: {
         mint: '#5fffd9',
+        mintLight: '#d7f4ff',
       },
     },
   },

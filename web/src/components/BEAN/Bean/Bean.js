@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Collapse } from 'react-collapse'
 
 import Comment from '../../COMMENT/Comment/Comment'
+import Message from '../../common/message.js'
 import NewComment from '../../COMMENT/NewComment/NewComment'
 import { prettyTime } from '../../../utils/date.js'
 
@@ -14,14 +15,6 @@ const DELETE_BEAN_MUTATION = gql`
     }
   }
 `
-
-const timeTag = (datetime) => {
-  return (
-    <time dateTime={datetime} title={datetime}>
-      {prettyTime(datetime)}
-    </time>
-  )
-}
 
 const Bean = ({ bean }) => {
   const [isOpen, setOpen] = useState(false)
@@ -38,26 +31,25 @@ const Bean = ({ bean }) => {
       deleteBean({ variables: { id } })
     }
   }
-  // <Link to={routes.bean({ id: bean.id })}>
-  // </Link>
+
   const toggleOpen = () => {
     setOpen(!isOpen)
   }
 
   return (
-    <div className="rounded shadow mb-6">
+    <div className="rounded shadow mb-6 border-2 border-mint">
       <div className="p-4">
-        <div>{bean.body}</div>
-        <header className="flex justify-between mt-2">
-          <span className="font-semibold">{bean.username}</span>
-          {timeTag(bean.createdAt)}
-        </header>
-        <div className="flex">
+        <Message
+          body={bean.body}
+          username={bean.username}
+          createdAt={bean.createdAt}
+        />
+        <div className="flex mb-4">
           <button
             onClick={toggleOpen}
             className="ml-2 flex-grow text-center bg-gray-200 rounded mx-2"
           >
-            Reply ({bean.comments.length}) {isOpen ? '↓' : '↑'}
+            Reply ({bean.comments.length}) {isOpen ? '↑' : '↓'}
           </button>
           <nav className="flex justify-end">
             <Link
@@ -76,10 +68,12 @@ const Bean = ({ bean }) => {
           </nav>
         </div>
         <Collapse isOpened={isOpen}>
-          <NewComment bean={bean} />
-          {bean.comments.map((c) => (
-            <Comment key={c.id} comment={c} />
-          ))}
+          <div className="rounded-md  p-2">
+            <NewComment bean={bean} />
+            {bean.comments.map((c) => (
+              <Comment key={c.id} comment={c} />
+            ))}
+          </div>
         </Collapse>
       </div>
     </div>
