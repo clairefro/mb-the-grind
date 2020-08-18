@@ -11,7 +11,7 @@ const CREATE_COMMENT_MUTATION = gql`
   }
 `
 
-const NewComment = (/*{ bean }*/) => {
+const NewComment = ({ bean }) => {
   const { addMessage } = useFlash()
   const [createComment, { loading, error }] = useMutation(
     CREATE_COMMENT_MUTATION,
@@ -29,12 +29,18 @@ const NewComment = (/*{ bean }*/) => {
   //   })
   //   createComment({ variables: { input: castInput } })
   // }
+
+  // const relateModelToInput = (input, {model}) => {
+  //   return Object.assign(input, { bean: { connect: { id: model.id } } })
+  // }
+
   const onSave = (input) => {
-    // const castInput = Object.assign(input, {
-    //   bean: { connect: { id: bean.id } },
-    // })
-    // createComment({ variables: { input: castInput } })
-    createComment({ variables: { input } })
+    const castInput = Object.assign(input, {
+      // bean: { connect: { id: bean.id } },
+      beanId: bean.id,
+    })
+    // const castInput = relateModelToInput(input, bean)
+    createComment({ variables: { input: castInput } })
   }
 
   return (

@@ -10,28 +10,15 @@ export const comment = ({ id }) => {
   })
 }
 
-// export const createComment = ({ input }) => {
-//   console.log({ input })
-//   return db.comment.create({
-//     data: input,
-//   })
-// }
-
+// ALTERED TO CREATE ASSOCIATION
 export const createComment = ({ input }) => {
-  console.log(input)
-
-  const comment = db.comment.create({
+  return db.comment.create({
     data: {
       body: input.body,
       username: input.username,
-      bean: {
-        connect: { id: input.beanId },
-      },
+      bean: { connect: { id: input.beanId } },
     },
   })
-
-  console.log(comment)
-  return comment
 }
 
 export const updateComment = ({ id, input }) => {
