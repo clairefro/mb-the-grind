@@ -6,7 +6,6 @@ import { Collapse } from 'react-collapse'
 import Comment from '../../COMMENT/Comment/Comment'
 import Message from '../../common/message.js'
 import NewComment from '../../COMMENT/NewComment/NewComment'
-import { prettyTime } from '../../../utils/date.js'
 
 const DELETE_BEAN_MUTATION = gql`
   mutation DeleteBeanMutation($id: Int!) {
@@ -18,6 +17,11 @@ const DELETE_BEAN_MUTATION = gql`
 
 const Bean = ({ bean }) => {
   const [isOpen, setOpen] = useState(false)
+  const [comments, setComments] = useState(
+    bean.comments.sort(function (a, b) {
+      return new Date(a.createdAt) - new Date(b.createdAt)
+    })
+  )
   const { addMessage } = useFlash()
   const [deleteBean] = useMutation(DELETE_BEAN_MUTATION, {
     onCompleted: () => {
@@ -36,6 +40,10 @@ const Bean = ({ bean }) => {
     setOpen(!isOpen)
   }
 
+  const forceUpdate = (comment) => {
+    setComments(comments.concat(comment))
+  }
+
   return (
     <div className="rounded shadow mb-6 border-2 border-mint">
       <div className="p-4">
@@ -49,7 +57,7 @@ const Bean = ({ bean }) => {
             onClick={toggleOpen}
             className="ml-2 flex-grow text-center bg-gray-200 rounded mx-2"
           >
-            Reply ({bean.comments.length}) {isOpen ? '↑' : '↓'}
+            Reply ({comments.length}) {isOpen ? '↑' : '↓'}
           </button>
           <nav className="flex justify-end">
             <Link
@@ -68,10 +76,10 @@ const Bean = ({ bean }) => {
           </nav>
         </div>
         <Collapse isOpened={isOpen}>
-          <div className="rounded-md  p-2">
-            <NewComment bean={bean} />
-            {bean.comments.map((c) => (
-              <Comment key={c.id} comment={c} />
+          <div className="rounded-md p-2">
+            <NewComment bean={bean} forceUpdate={forceUpdate} />
+            {comments.reverse().map((c, i) => (
+              <Comment key={i} comment={c} />
             ))}
           </div>
         </Collapse>

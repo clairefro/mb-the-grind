@@ -1,7 +1,7 @@
 import { db } from 'src/lib/db'
 
 export const comments = () => {
-  return db.comment.findMany({ orderBy: { createdAt: 'desc' } })
+  return db.comment.findMany()
 }
 
 export const comment = ({ id }) => {
