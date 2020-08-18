@@ -15,8 +15,8 @@ export const schema = gql`
 
   input CreateCommentInput {
     body: String!
-    beanId: Int!
     username: String!
+    beanId: Int!
   }
 
   input UpdateCommentInput {

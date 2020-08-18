@@ -4,3 +4,7 @@
 /* purgecss end ignore */
 
 @tailwind utilities;
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}

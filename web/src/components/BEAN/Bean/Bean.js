@@ -1,6 +1,10 @@
 import { useMutation, useFlash } from '@redwoodjs/web'
 import { Link, routes, navigate } from '@redwoodjs/router'
+import { useState } from 'react'
+import { Collapse } from 'react-collapse'
 
+import Comment from '../../COMMENT/Comment/Comment'
+import NewComment from '../../COMMENT/NewComment/NewComment'
 import { prettyTime } from '../../../utils/date.js'
 
 const DELETE_BEAN_MUTATION = gql`
@@ -10,14 +14,6 @@ const DELETE_BEAN_MUTATION = gql`
     }
   }
 `
-//
-// const jsonDisplay = (obj) => {
-//   return (
-//     <pre>
-//       <code>{JSON.stringify(obj, null, 2)}</code>
-//     </pre>
-//   )
-// }
 
 const timeTag = (datetime) => {
   return (
@@ -27,11 +23,8 @@ const timeTag = (datetime) => {
   )
 }
 
-// const checkboxInputTag = (checked) => {
-//   return <input type="checkbox" checked={checked} disabled />
-// }
-
 const Bean = ({ bean }) => {
+  const [isOpen, setOpen] = useState(false)
   const { addMessage } = useFlash()
   const [deleteBean] = useMutation(DELETE_BEAN_MUTATION, {
     onCompleted: () => {
@@ -45,6 +38,11 @@ const Bean = ({ bean }) => {
       deleteBean({ variables: { id } })
     }
   }
+  // <Link to={routes.bean({ id: bean.id })}>
+  // </Link>
+  const toggleOpen = () => {
+    setOpen(!isOpen)
+  }
 
   return (
     <div className="rounded shadow mb-6">
@@ -54,20 +52,35 @@ const Bean = ({ bean }) => {
           <span className="font-semibold">{bean.username}</span>
           {timeTag(bean.createdAt)}
         </header>
-
-        <nav className="flex justify-end">
-          <Link to={routes.editBean({ id: bean.id })} className="text-gray-500">
-            Edit
-          </Link>
-          <a
-            href="#"
-            className="text-red-500 ml-2"
-            onClick={() => onDeleteClick(bean.id)}
+        <div className="flex">
+          <button
+            onClick={toggleOpen}
+            className="ml-2 flex-grow text-center bg-gray-200 rounded mx-2"
           >
-            Delete
-          </a>
-          <p className="ml-2">Comments ({bean.comments.length})</p>
-        </nav>
+            Reply ({bean.comments.length}) {isOpen ? '↓' : '↑'}
+          </button>
+          <nav className="flex justify-end">
+            <Link
+              to={routes.editBean({ id: bean.id })}
+              className="text-gray-500"
+            >
+              Edit
+            </Link>
+            <a
+              href="#"
+              className="text-red-500 ml-2"
+              onClick={() => onDeleteClick(bean.id)}
+            >
+              Delete
+            </a>
+          </nav>
+        </div>
+        <Collapse isOpened={isOpen}>
+          <NewComment bean={bean} />
+          {bean.comments.map((c) => (
+            <Comment key={c.id} comment={c} />
+          ))}
+        </Collapse>
       </div>
     </div>
   )

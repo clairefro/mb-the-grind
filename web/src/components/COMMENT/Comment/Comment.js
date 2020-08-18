@@ -44,56 +44,24 @@ const Comment = ({ comment }) => {
     }
   }
 
-  return (
-    <>
-      <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
-            Comment {comment.id} Detail
-          </h2>
-        </header>
-        <table className="rw-table">
-          <tbody>
-            <tr>
-              <th>Id</th>
-              <td>{comment.id}</td>
-            </tr>
-            <tr>
-              <th>Body</th>
-              <td>{comment.body}</td>
-            </tr>
-            <tr>
-              <th>Bean id</th>
-              <td>{comment.beanId}</td>
-            </tr>
-            <tr>
-              <th>Username</th>
-              <td>{comment.username}</td>
-            </tr>
-            <tr>
-              <th>Created at</th>
-              <td>{timeTag(comment.createdAt)}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <nav className="rw-button-group">
-        <Link
-          to={routes.editComment({ id: comment.id })}
-          className="rw-button rw-button-blue"
-        >
-          Edit
-        </Link>
-        <a
-          href="#"
-          className="rw-button rw-button-red"
-          onClick={() => onDeleteClick(comment.id)}
-        >
-          Delete
-        </a>
-      </nav>
-    </>
-  )
+  return <div className="">{comment.body}</div>
 }
+
+// <span>{timeTag(comment.createdAt)}</span>
+// <nav className="rw-button-group">
+//   <Link
+//     to={routes.editComment({ id: comment.id })}
+//     className="rw-button "
+//   >
+//     Edit
+//   </Link>
+//   <a
+//     href="#"
+//     className="rw-button rw-button-red"
+//     onClick={() => onDeleteClick(comment.id)}
+//   >
+//     Delete
+//   </a>
+// </nav>
 
 export default Comment

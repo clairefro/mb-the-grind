@@ -4,7 +4,7 @@ const GlobalLayout = ({ children }) => {
   return (
     <>
       <Nav />
-      {children}
+      <div className="container mx-auto max-w-screen-md pt-24">{children}</div>
     </>
   )
 }

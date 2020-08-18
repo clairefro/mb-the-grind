@@ -4,7 +4,7 @@ import {
   FieldError,
   Label,
   TextField,
-  NumberField,
+  TextAreaField,
   Submit,
 } from '@redwoodjs/forms'
 
@@ -24,38 +24,6 @@ const CommentForm = (props) => {
         />
 
         <Label
-          name="body"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Body
-        </Label>
-        <TextField
-          name="body"
-          defaultValue={props.comment?.body}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-        <FieldError name="body" className="rw-field-error" />
-
-        <Label
-          name="beanId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Bean id
-        </Label>
-        <NumberField
-          name="beanId"
-          defaultValue={props.comment?.beanId}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-        <FieldError name="beanId" className="rw-field-error" />
-
-        <Label
           name="username"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
@@ -69,11 +37,27 @@ const CommentForm = (props) => {
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
+        <Label
+          name="body"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Body
+        </Label>
+        <TextAreaField
+          name="body"
+          defaultValue={props.comment?.body}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+        <FieldError name="body" className="rw-field-error" />
+
         <FieldError name="username" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
-            Save
+          <Submit disabled={props.loading} className="rw-button bg-mint">
+            Reply
           </Submit>
         </div>
       </Form>

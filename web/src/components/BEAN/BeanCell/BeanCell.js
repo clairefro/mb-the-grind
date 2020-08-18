@@ -7,6 +7,12 @@ export const QUERY = gql`
       body
       username
       createdAt
+      comments {
+        id
+        username
+        createdAt
+        body
+      }
     }
   }
 `
