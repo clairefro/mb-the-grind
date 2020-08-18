@@ -11,6 +11,12 @@ import {
 const CommentForm = (props) => {
   const onSubmit = (data) => {
     props.onSave(data, props?.comment?.id)
+    clear()
+  }
+
+  const clear = () => {
+    const inputs = document.querySelectorAll('input, textarea')
+    inputs.forEach((i) => (i.value = ''))
   }
 
   return (
